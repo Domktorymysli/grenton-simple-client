@@ -120,4 +120,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <scm>
+        <url>https://github.com/Domktorymysli/grenton-simple-client.git</url>
+        <connection>scm:git@github.com:Domktorymysli/grenton-simple-client.git</connection>
+        <developerConnection>scm:git@github.com:Domktorymysli/grenton-simple-client.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
 </project>
