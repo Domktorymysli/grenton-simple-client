@@ -3,7 +3,7 @@
 
     <groupId>com.github.domktorymysli.grenton</groupId>
     <artifactId>simple-client</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Grenton Simple Client</name>
@@ -14,7 +14,7 @@
         <url>https://github.com/Domktorymysli/grenton-simple-client</url>
         <connection>scm:git:git@github.com:Domktorymysli/grenton-simple-client.git</connection>
         <developerConnection>scm:git:git@github.com:Domktorymysli/grenton-simple-client.git</developerConnection>
-      <tag>simple-client-1.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
