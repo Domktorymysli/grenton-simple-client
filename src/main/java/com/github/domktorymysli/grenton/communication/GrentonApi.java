@@ -8,7 +8,7 @@ import com.github.domktorymysli.grenton.cipher.model.MessageEncoded;
 import com.github.domktorymysli.grenton.excpetion.GrentonIoException;
 import com.github.domktorymysli.grenton.model.Clu;
 import com.github.domktorymysli.grenton.command.CluCommand;
-import com.github.domktorymysli.grenton.model.CluResponse;
+import com.github.domktorymysli.grenton.command.CluCommandResponse;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -16,9 +16,9 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-public class GrentonApi implements Api {
+public final class GrentonApi implements Api {
 
-    final static Logger logger = Logger.getLogger(GrentonCli.class);
+    private final static Logger logger = Logger.getLogger(GrentonCli.class);
 
     private final Clu clu;
     private final Encoder encoder;
@@ -33,7 +33,7 @@ public class GrentonApi implements Api {
         this.socket = socket;
     }
 
-    public CluResponse send(CluCommand command) throws GrentonIoException, GrentonEncoderException {
+    public CluCommandResponse send(CluCommand command) throws GrentonIoException, GrentonEncoderException {
 
         try {
             MessageEncoded messageEncoded = encoder.encode(new MessageDecoded(command.getCommand()));
@@ -53,11 +53,12 @@ public class GrentonApi implements Api {
             this.socket.close();
             long estimatedTime = System.currentTimeMillis() - startTime;
 
-            CluResponse cluResponse = new CluResponse(encoder.decode(new MessageEncoded(response.getData(), response.getLength())));
+            MessageDecoded messageDecoded = encoder.decode(new MessageEncoded(response.getData(), response.getLength()));
+            CluCommandResponse cluCommandResponse = new CluCommandResponse(messageDecoded);
 
-            logger.info("Clu response: " + cluResponse.getMessageDecoded().toString() + ", in " + estimatedTime + "ms");
+            logger.info("Clu response: " + cluCommandResponse.getMessageDecoded().toString() + ", in " + estimatedTime + "ms");
 
-            return cluResponse;
+            return cluCommandResponse;
 
         } catch (IOException e) {
 

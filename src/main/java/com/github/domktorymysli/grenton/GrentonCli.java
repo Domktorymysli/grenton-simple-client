@@ -2,15 +2,13 @@ package com.github.domktorymysli.grenton;
 
 import com.github.domktorymysli.grenton.cipher.api.Encoder;
 import com.github.domktorymysli.grenton.cipher.api.EncoderGrenton;
-import com.github.domktorymysli.grenton.cipher.api.exception.GrentonEncoderException;
 import com.github.domktorymysli.grenton.command.CluCommand;
 import com.github.domktorymysli.grenton.command.CluFunctionCommand;
 import com.github.domktorymysli.grenton.communication.Api;
 import com.github.domktorymysli.grenton.communication.GrentonApi;
 import com.github.domktorymysli.grenton.excpetion.PropertiesException;
 import com.github.domktorymysli.grenton.model.Clu;
-import com.github.domktorymysli.grenton.excpetion.GrentonIoException;
-import com.github.domktorymysli.grenton.model.CluResponse;
+import com.github.domktorymysli.grenton.command.CluCommandResponse;
 import com.github.domktorymysli.grenton.model.Properties;
 import com.github.domktorymysli.grenton.tools.PropertiesLoader;
 import com.github.domktorymysli.grenton.tools.PropertiesLoaderImpl;
@@ -20,11 +18,10 @@ import org.apache.log4j.Logger;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 
-public class GrentonCli
+public final class GrentonCli
 {
-    final static Logger logger = Logger.getLogger(GrentonCli.class);
+    private final static Logger logger = Logger.getLogger(GrentonCli.class);
 
     private static Options getCliOptions()
     {
@@ -82,16 +79,10 @@ public class GrentonCli
 
             CluCommand command = new CluFunctionCommand(InetAddress.getByName(ip), functionName, parameters);
 
-            CluResponse result = api.send(command);
-            System.out.println(result.toString());
+            CluCommandResponse result = api.send(command);
+            System.out.println(result.getBody());
 
-        } catch (UnknownHostException e) {
-            System.out.println(e.getMessage());
-            logger.error(e.getMessage(), e);
-        } catch (GrentonIoException e) {
-            System.out.println(e.getMessage());
-            logger.error(e.getMessage(), e);
-        } catch (GrentonEncoderException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             logger.error(e.getMessage(), e);
         }

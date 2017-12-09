@@ -2,7 +2,7 @@ package com.github.domktorymysli.grenton.excpetion;
 
 import java.io.IOException;
 
-public class GrentonIoException extends IOException {
+public final class GrentonIoException extends IOException {
 
     public GrentonIoException(Throwable cause) {
         super(cause);

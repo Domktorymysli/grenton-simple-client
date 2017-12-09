@@ -3,7 +3,7 @@ package com.github.domktorymysli.grenton.model;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Properties {
+public final class Properties {
 
     private String cluKey;
 

@@ -7,7 +7,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-public class PropertiesLoaderImpl implements PropertiesLoader {
+public final class PropertiesLoaderImpl implements PropertiesLoader {
 
     public Properties loadProperties(String filename) throws PropertiesException {
 

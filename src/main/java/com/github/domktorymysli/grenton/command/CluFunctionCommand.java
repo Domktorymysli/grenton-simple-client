@@ -3,13 +3,9 @@ package com.github.domktorymysli.grenton.command;
 import java.net.InetAddress;
 import java.util.Random;
 
-public class CluFunctionCommand implements CluCommand {
+final public class CluFunctionCommand extends CluCommandBase implements CluCommand {
 
     private Random randomGenerator = new Random();
-
-    private final String command;
-
-    private final String sessionId;
 
     public CluFunctionCommand(InetAddress ip, String functionName, String[] args) {
 
@@ -22,16 +18,6 @@ public class CluFunctionCommand implements CluCommand {
         }
 
         this.command = "req:" + ip.getHostAddress() + ":" + this.sessionId + ":" + functionName + "(" + arguments + ")";
-    }
-
-    @Override
-    public String getCommand() {
-        return this.command;
-    }
-
-    @Override
-    public String getSessionId() {
-        return this.sessionId;
     }
 
     private String generateRandomSessionId() {

@@ -3,7 +3,7 @@ package com.github.domktorymysli.grenton.model;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class Clu {
+public final class Clu {
 
     private final Integer port;
     private final InetAddress ip;

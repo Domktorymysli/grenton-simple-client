@@ -1,6 +1,6 @@
 package com.github.domktorymysli.grenton.excpetion;
 
-public class PropertiesException extends Exception {
+public final class PropertiesException extends Exception {
 
     public PropertiesException(String messsage, Throwable e)
     {
